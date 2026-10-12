@@ -20,6 +20,14 @@ def cargar():
     return [f for f in filas if f.get('Nombre del participante') and f.get('ID de Drive')]
 
 
+carpeta = Path(__file__).resolve().parent
+opciones_logo = [carpeta / 'logo_congreso.jpg', carpeta / 'logo_congreso.jpeg', carpeta / 'logo_congreso.png']
+logo = next((p for p in opciones_logo if p.is_file()), None)
+if logo is not None:
+    st.image(str(logo), width=360)
+else:
+    st.warning('No se encontró logo_congreso.jpg junto a app.py. Revisa que ambos estén en la raíz del repositorio y que el nombre coincida exactamente.')
+
 st.title('Certificados de participación')
 st.markdown('**III Congreso Colombiano de Etnomatemática**')
 st.caption('Riohacha, 6 al 8 de octubre de 2026')
